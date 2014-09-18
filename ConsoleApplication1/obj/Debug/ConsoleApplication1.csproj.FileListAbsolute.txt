@@ -1,0 +1,9 @@
+c:\users\possiblyinsane\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+c:\users\possiblyinsane\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+c:\users\possiblyinsane\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+c:\users\possiblyinsane\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\OpenTK.dll
+c:\users\possiblyinsane\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\OpenTK.pdb
+c:\users\possiblyinsane\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\OpenTK.xml
+c:\users\possiblyinsane\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+c:\users\possiblyinsane\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+c:\users\possiblyinsane\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
