@@ -28,7 +28,7 @@ using OpenTK.Graphics.OpenGL;
 	let me know and
 	use it!" 
 */
-namespace ConsoleApplication1
+namespace OpenTkPractice
 {
     class Camera
     {
@@ -68,9 +68,9 @@ namespace ConsoleApplication1
                                         (float)ViewPoint.X, (float)ViewPoint.Y, (float)ViewPoint.Z,
                                         (float)UpVector.X, (float)UpVector.Y, (float)UpVector.Z);
         }
-        Console.WriteLine("Lookat:" + (float)Position.X +  (float)Position.Y +  (float)Position.Z + "\n" 
-                                       + (float)ViewPoint.X + (float)ViewPoint.Y+ (float)ViewPoint.Z + "\n"
-                                       + (float)UpVector.X+ (float)UpVector.Y+ (float)UpVector.Z + "\n");
+        //Console.WriteLine("Lookat:" + (float)Position.X +  (float)Position.Y +  (float)Position.Z + "\n" 
+                                       //+ (float)ViewPoint.X + (float)ViewPoint.Y+ (float)ViewPoint.Z + "\n"
+                                       //+ (float)UpVector.X+ (float)UpVector.Y+ (float)UpVector.Z + "\n");
         GL.MatrixMode(MatrixMode.Modelview);
         GL.LoadMatrix(ref lookat);
 

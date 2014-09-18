@@ -12,15 +12,14 @@ using OpenTK.Input;
 namespace OpenTkPractice
 {
 
-    class Program : GameWindow
+    class Game : GameWindow
     {
 
         Camera mycamera = new Camera();
         MouseState current, previous;
-        #region Cube information
+        #region World information
 
-        Cube mycube = new Cube();
-        Cube mycube2 = new Cube();
+        World myworld = new World(); 
 
         #endregion
 
@@ -29,16 +28,20 @@ namespace OpenTkPractice
 
         protected override void OnLoad(EventArgs e)
         {
+            base.OnLoad(e);
+            VSync = VSyncMode.On;
+            Title = "Testing Title";
             GL.ClearColor(Color.Black);
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.CullFace);
             GL.EnableClientState(EnableCap.VertexArray);
             GL.EnableClientState(EnableCap.ColorArray);
-            mycube2.MoveBlock(0,0,1);
+            //mycube2.MoveBlock(0,0,1);
         }
 
         protected override void OnResize(EventArgs e)
         {
+            base.OnResize(e);
             GL.Viewport(0, 0, Width, Height);
             matrixProjection = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 100f);
             GL.MatrixMode(MatrixMode.Projection);
@@ -47,6 +50,7 @@ namespace OpenTkPractice
 
         protected override void OnRenderFrame(FrameEventArgs e)
         {
+            base.OnRenderFrame(e);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             //GL.LoadIdentity();
@@ -62,41 +66,41 @@ namespace OpenTkPractice
             #endregion
 
             #region World
-            //GL.Translate(0.0, -0.5, -6.0);
+            ////GL.Translate(0.0, -0.5, -6.0);
 
-            GL.Scale(30.0, 10.0, 30.0);
+            //GL.Scale(30.0, 10.0, 30.0);
             
-            float size = 2.0f;
-            int LinesX = 30;
-            int LinesZ = 30;
+            //float size = 2.0f;
+            //int LinesX = 30;
+            //int LinesZ = 30;
             
-            float halfsize = (float)(size / 2.0);
-            //Draw the "world":
+            //float halfsize = (float)(size / 2.0);
+            ////Draw the "world":
 
-            GL.Color3(1.0, 1.0, 1.0);
-            GL.PushMatrix();
-            GL.Translate(0.0, -halfsize, 0.0);
-            DrawNet(size, LinesX, LinesZ);
-            GL.Translate(0.0, size, 0.0);
-            DrawNet(size, LinesX, LinesZ);
-            GL.PopMatrix();
-            GL.Color3(0.0, 0.0, 1.0);
-            GL.PushMatrix();
-            GL.Translate(-halfsize, 0.0, 0.0);
-            GL.Rotate(90.0, 0.0, 0.0, halfsize);
-            DrawNet(size, LinesX, LinesZ);
-            GL.Translate(0.0, -size, 0.0);
-            DrawNet(size, LinesX, LinesZ);
-            GL.PopMatrix();
-            GL.Color3(1.0, 0.0, 0.0);
-            GL.PushMatrix();
-            GL.Translate(0.0, 0.0, -halfsize);
-            GL.Rotate(90.0, halfsize, 0.0, 0.0);
-            DrawNet(size, LinesX, LinesZ);
-            GL.Translate(0.0, size, 0.0);
-            DrawNet(size, LinesX, LinesZ);
-            GL.PopMatrix();
-
+            //GL.Color3(1.0, 1.0, 1.0);
+            //GL.PushMatrix();
+            //GL.Translate(0.0, -halfsize, 0.0);
+            //DrawNet(size, LinesX, LinesZ);
+            //GL.Translate(0.0, size, 0.0);
+            //DrawNet(size, LinesX, LinesZ);
+            //GL.PopMatrix();
+            //GL.Color3(0.0, 0.0, 1.0);
+            //GL.PushMatrix();
+            //GL.Translate(-halfsize, 0.0, 0.0);
+            //GL.Rotate(90.0, 0.0, 0.0, halfsize);
+            //DrawNet(size, LinesX, LinesZ);
+            //GL.Translate(0.0, -size, 0.0);
+            //DrawNet(size, LinesX, LinesZ);
+            //GL.PopMatrix();
+            //GL.Color3(1.0, 0.0, 0.0);
+            //GL.PushMatrix();
+            //GL.Translate(0.0, 0.0, -halfsize);
+            //GL.Rotate(90.0, halfsize, 0.0, 0.0);
+            //DrawNet(size, LinesX, LinesZ);
+            //GL.Translate(0.0, size, 0.0);
+            //DrawNet(size, LinesX, LinesZ);
+            //GL.PopMatrix();
+            myworld.draw();
             //mycube.draw();
             //mycube2.draw();
             #endregion
@@ -116,13 +120,13 @@ namespace OpenTkPractice
                         
                         if (xdelta != 0)
                         {
-                            mycamera.RotateY(xdelta);
-                            Console.WriteLine("Move X:" + xdelta);
+                            mycamera.RotateY(xdelta/10);
+                            //Console.WriteLine("Move X:" + xdelta);
                         }
                         if (ydelta != 0)
                         {
-                            mycamera.RotateX(-ydelta);
-                            Console.WriteLine("Move Y:" + ydelta);
+                            mycamera.RotateX(-ydelta/10);
+                            //Console.WriteLine("Move Y:" + ydelta);
                         }
                     }
                     current = OpenTK.Input.Mouse.GetState();
@@ -132,30 +136,10 @@ namespace OpenTkPractice
         private static void Main(string[] args)
         {
             
-            using (Program p = new Program())
+            using (Game game = new Game())
             {
-                p.Load += (sender, e) =>
-                {
-                    // setup settings, load textures, sounds
-                    p.VSync = VSyncMode.On;
-                };
 
-                p.Resize += (sender, e) =>
-                {
-                    GL.Viewport(0, 0, p.Width, p.Height);
-                };
-
-                p.UpdateFrame += (sender, e) =>
-                {
-                    
-                    // add game logic, input handling
-                    if (p.Keyboard[Key.Escape])
-                    {
-                        p.Exit();
-                    }
-                    
-                };
-                    p.Run(60d);
+                    game.Run(60);
             }
         }
         void DrawNet(float size, int LinesX, int LinesZ)

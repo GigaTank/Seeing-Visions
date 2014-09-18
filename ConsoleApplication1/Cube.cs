@@ -13,7 +13,7 @@ using OpenTK.Graphics.OpenGL;
  *This is an extension of the hellocube from :
  *http://www.opentk.com/node/2873
  */
-namespace ConsoleApplication1
+namespace OpenTkPractice
 {
     enum Directions {north, south, east, west, up, down}
     class Cube
@@ -61,6 +61,10 @@ namespace ConsoleApplication1
 			-0.5f, -0.5f, -0.5f, // vertex[7]
 		};
         }
+        public Cube(Vector3 cubeloc) : this()
+        { 
+            MoveBlock(cubeloc);
+        }
         public void draw()
         {
             GL.VertexPointer(3, VertexPointerType.Float, 0, cube);
@@ -68,19 +72,19 @@ namespace ConsoleApplication1
             GL.DrawElements(BeginMode.Triangles, 36, DrawElementsType.UnsignedByte, triangles);
 
         }
-        public void MoveBlock(float NorthMoveBlocks, float EastMoveBlocks, float UpMoveBlocks)
+        public void MoveBlock(Vector3 Movedist)
         {   
             for (int i=0; i < cube.Length; i += 3)
             {
-                cube[i] += EastMoveBlocks;
+                cube[i] += Movedist.X;
             }
             for (int i = 1; i < cube.Length; i += 3)
             {
-                cube[i] += UpMoveBlocks;
+                cube[i] += Movedist.Y;
             }
             for (int i = 2; i < cube.Length; i += 3)
             {
-                cube[i] += NorthMoveBlocks;
+                cube[i] += Movedist.Z;
             } 
         }   
 
